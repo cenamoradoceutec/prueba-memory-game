@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Button, Alert, Text } from 'react-native';
+import { View, Button, Alert } from 'react-native';
 import { GameContext } from '../context/GameContext';
+import GameStats from '../components/GameStats';
 
 const generateCards = () => {
   const values = [1, 1, 2, 2, 3, 3, 4, 4];
@@ -8,7 +9,7 @@ const generateCards = () => {
 };
 
 export default function GameScreen() {
-  const { incrementGames, gamesPlayed } = useContext(GameContext);
+  const { incrementGames } = useContext(GameContext);
   const [cards, setCards] = useState<number[]>([]);
   const [selected, setSelected] = useState<number[]>([]);
 
@@ -45,7 +46,7 @@ export default function GameScreen() {
 
   return (
     <View style={{ flex: 1, padding: 20, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Partidas jugadas: {gamesPlayed}</Text>
+      <GameStats />
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: 200 }}>
         {cards.map((value, index) => (
           <Button
